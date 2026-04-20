@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Son After Moon AI</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#080810;color:#f0ede4;font-family:sans-serif}
+nav{position:fixed;top:0;left:0;right:0;background:rgba(8,8,16,0.95);padding:1rem 1.5rem;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid rgba(201,168,76,0.2);z-index:99}
+.logo{color:#c9a84c;font-size:1rem;font-weight:700}
+.nav-btn{background:linear-gradient(135deg,#c9a84c,#7a6030);color:#080810;border:none;padding:.4rem 1rem;border-radius:6px;font-weight:700;cursor:pointer}
+.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:6rem 1.5rem 3rem}
+.badge{background:rgba(201,168,76,0.1);border:1px solid rgba(201,168,76,0.3);border-radius:20px;padding:.3rem .9rem;font-size:.75rem;color:#c9a84c;margin-bottom:1.5rem;display:inline-block}
+h1{font-size:2.5rem;font-weight:700;margin-bottom:1rem;line-height:1.2}
+h1 span{color:#c9a84c}
+.sub{color:#a09a8a;max-width:500px;margin:.5rem auto 2rem;font-size:.95rem}
+.btns{display:flex;gap:.8rem;justify-content:center;flex-wrap:wrap;margin-bottom:2rem}
+.btn-main{background:linear-gradient(135deg,#c9a84c,#7a6030);color:#080810;border:none;padding:.75rem 1.8rem;border-radius:8px;font-weight:700;cursor:pointer;font-size:.9rem}
+.btn-out{background:none;color:#f0ede4;border:1px solid rgba(201,168,76,0.3);padding:.75rem 1.8rem;border-radius:8px;cursor:pointer;font-size:.9rem}
+.pills{display:flex;flex-wrap:wrap;gap:.4rem;justify-content:center}
+.pill{background:rgba(201,168,76,0.06);border:1px solid rgba(201,168,76,0.15);border-radius:20px;padding:.2rem .7rem;font-size:.7rem;color:#a09a8a}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(201,168,76,0.1);border:1px solid rgba(201,168,76,0.1);border-radius:12px;overflow:hidden;max-width:500px;margin:2rem auto}
+.stat{background:#0d0d1a;padding:1rem;text-align:center}
+.stat-n{font-size:1.5rem;font-weight:700;color:#c9a84c}
+.stat-l{font-size:.7rem;color:#a09a8a;margin-top:.2rem}
+.section{padding:3rem 1.5rem;max-width:900px;margin:0 auto}
+.sec-label{font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;color:#c9a84c;margin-bottom:.5rem}
+.sec-title{font-size:1.8rem;font-weight:700;margin-bottom:.5rem}
+.sec-desc{font-size:.88rem;color:#a09a8a;margin-bottom:2rem}
+.tools{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:.8rem}
+.tool{background:#0d0d1a;border:1px solid rgba(201,168,76,0.08);border-radius:12px;padding:1rem .8rem;text-align:center;cursor:pointer;position:relative;transition:all .2s}
+.tool:hover{border-color:#c9a84c;transform:translateY(-2px)}
+.tool-icon{font-size:1.5rem;margin-bottom:.4rem}
+.tool-name{font-size:.72rem;font-weight:600}
+.tool-tag{font-size:.6rem;color:#a09a8a;margin-top:.2rem}
+.tbadge{position:absolute;top:6px;right:6px;font-size:.55rem;padding:.1rem .35rem;border-radius:4px;font-weight:700;text-transform:uppercase}
+.free{background:rgba(40,202,65,.15);color:#28ca41;border:1px solid rgba(40,202,65,.3)}
+.pro{background:rgba(201,168,76,.15);color:#c9a84c;border:1px solid rgba(201,168,76,.3)}
+.fut{background:rgba(138,43,226,.15);color:#b57bee;border:1px solid rgba(138,43,226,.3)}
+.plans{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:1rem}
+.plan{background:#0d0d1a;border:1px solid rgba(201,168,76,0.1);border-radius:16px;padding:1.5rem 1.2rem;position:relative}
+.plan.feat{border-color:#c9a84c}
+.feat-tag{position:absolute;top:-10px;left:50%;transform:translateX(-50%);background:linear-gradient(135deg,#c9a84c,#7a6030);color:#080810;font-size:.6rem;font-weight:700;padding:.2rem .8rem;border-radius:10px;white-space:nowrap}
+.plan-name{color:#c9a84c;font-size:.85rem;font-weight:700;margin-bottom:.5rem}
+.plan-price{font-size:1.8rem;font-weight:700;margin-bottom:1rem}
+.plan-price span{font-size:.8rem;color:#a09a8a;font-weight:400}
+.plan-feats{list-style:none;margin-bottom:1rem}
+.plan-feats li{font-size:.75rem;color:#a09a8a;padding:.2rem 0}
+.plan-feats li::before{content:"✓ ";color:#c9a84c;font-weight:700}
+.plan-btn{width:100%;background:none;border:1px solid rgba(201,168,76,0.3);color:#f0ede4;padding:.6rem;border-radius:8px;cursor:pointer;font-size:.78rem;font-weight:600}
+.plan.feat .plan-btn{background:linear-gradient(135deg,#c9a84c,#7a6030);border:none;color:#080810}
+.chat-box{background:#0d0d1a;border:1px solid rgba(201,168,76,0.2);border-radius:16px;overflow:hidden;max-width:680px;margin:0 auto}
+.chat-head{background:#12122a;padding:.75rem 1rem;display:flex;align-items:center;gap:.5rem;border-bottom:1px solid rgba(201,168,76,0.08)}
+.dot{width:8px;height:8px;border-radius:50%}
+.dr{background:#ff5f57}.dy{background:#ffbd2e}.dg{background:#28ca41}
+.chat-title{color:#c9a84c;font-size:.8rem;font-weight:700;margin-left:.5rem}
+.msgs{padding:1rem;min-height:200px;max-height:300px;overflow-y:auto;display:flex;flex-direction:column;gap:.8rem}
+.msg{display:flex;gap:.6rem}
+.msg-u{flex-direction:row-reverse}
+.av{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.7rem;flex-shrink:0;font-weight:700}
+.av-ai{background:linear-gradient(135deg,#c9a84c,#7a6030);color:#080810}
+.av-u{background:#1a1a35;border:1px solid rgba(201,168,76,0.2)}
+.bubble{background:#1a1a35;border:1px solid rgba(201,168,76,0.08);border-radius:12px;padding:.6rem .9rem;font-size:.82rem;line-height:1.5;max-width:80%}
+.msg-u .bubble{background:rgba(201,168,76,0.12)}
+.chat-input{border-top:1px solid rgba(201,168,76,0.08);padding:.8rem;display:flex;gap:.5rem}
+.inp{flex:1;background:#1a1a35;border:1px solid rgba(201,168,76,0.2);border-radius:8px;padding:.5rem .8rem;color:#f0ede4;font-size:.82rem;outline:none}
+.inp:focus{border-color:#c9a84c}
+.send{background:linear-gradient(135deg,#c9a84c,#7a6030);border:none;border-radius:8px;width:36px;height:36px;cursor:pointer;color:#080810;font-weight:700;flex-shrink:0}
+footer{border-top:1px solid rgba(201,168,76,0.08);padding:2rem 1.5rem;text-align:center}
+.ft-logo{color:#c9a84c;font-weight:700;font-size:1rem;margin-bottom:.5rem}
+.ft-tag{color:#a09a8a;font-size:.8rem;margin-bottom:1rem}
+.ft-links{display:flex;gap:1.5rem;justify-content:center;flex-wrap:wrap;margin-bottom:1rem}
+.ft-links a{color:#a09a8a;text-decoration:none;font-size:.75rem}
+.ft-copy{color:#7a6030;font-size:.7rem}
+hr{border:none;border-top:1px solid rgba(201,168,76,0.06)}
+</style>
+</head>
+<body>
+
+<nav>
+<div class="logo">🌙 Son After Moon AI</div>
+<button class="nav-btn" onclick="document.getElementById('chat').scrollIntoView({behavior:'smooth'})">Try Free</button>
+</nav>
+
+<section class="hero">
+<div class="badge">🌟 India Ka Pehla Multilingual AI</div>
+<h1><span>Son After Moon</span><br/>AI Ecosystem</h1>
+<p class="sub">Ek platform - Sab AI tools - Har bhasha mein. Chat, Image, Video, Code - sab ek jagah.</p>
+<div class="btns">
+<button class="btn-main" onclick="document.getElementById('chat').scrollIntoView({behavior:'smooth'})">Abhi Try Karo - FREE</button>
+<button class="btn-out" onclick="document.getElementById('tools').scrollIntoView({behavior:'smooth'})">Sab Tools Dekho</button>
+</div>
+<div class="pills">
+<span class="pill">हिन्दी</span>
+<span class="pill">English</span>
+<span class="pill">தமிழ்</span>
+<span class="pill">తెలుగు</span>
+<span class="pill">বাংলা</span>
+<span class="pill">मराठी</span>
+<span class="pill">ਪੰਜਾਬੀ</span>
+<span class="pill">+100 more</span>
+</div>
+<div class="stats">
+<div class="stat"><div class="stat-n">100+</div><div class="stat-l">Languages</div></div>
+<div class="stat"><div class="stat-n">23+</div><div class="stat-l">AI Tools</div></div>
+<div class="stat"><div class="stat-n">24/7</div><div class="stat-l">Available</div></div>
+</div>
+</section>
+
+<hr/>
+
+<section class="section" id="chat">
+<div class="sec-label">💬 Chat AI</div>
+<h2 class="sec-title">Abhi Try Karo</h2>
+<p class="sec-desc">Kisi bhi bhasha mein baat karo</p>
+<div class="chat-box">
+<div class="chat-head">
+<div class="dot dr"></div><div class="dot dy"></div><div class="dot dg"></div>
+<span class="chat-title">Son After Moon AI</span>
+</div>
+<div class="msgs" id="msgs">
+<div class="msg">
+<div class="av av-ai">S</div>
+<div class="bubble">Namaste! Main Son After Moon AI hoon. Kisi bhi bhasha mein poochho - main jawab dunga! 😊</div>
+</div>
+</div>
+<div class="chat-input">
+<input class="inp" id="inp" type="text" placeholder="Kuch bhi poochho..."/>
+<button class="send" onclick="send()">➤</button>
+</div>
+</div>
+</section>
